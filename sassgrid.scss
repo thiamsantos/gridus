@@ -5,7 +5,6 @@
 // Version: 0.1
 // Licence: MIT - https://github.com/thiamsantos/sassgrid/LICENSE
 
-
 // Configs
 //------------------------------------------------//
 $gutter-width: 1rem;
@@ -17,18 +16,41 @@ $num-cols: 12;
   box-sizing: border-box;
 }
 
+// Prefixer
+// ------------------------------------------------//
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex($value) {
+  -webkit-box-flex: $value;
+  -webkit-flex: $value;
+  -ms-flex: $value;
+  flex: $value;
+}
+
+@mixin flex-flow($value) {
+  -webkit-flex-flow: $value;
+  -ms-flex-flow: $value;
+  flex-flow: $value;
+}
+
 // Row
 //------------------------------------------------//
 %row {
-  display: flex;
-  flex: 0 1 auto;
-  flex-flow: row wrap;
-  margin: 0 (-($gutter-width / 2)) $gutter-width (-($gutter-width / 2));
+  @include flexbox;
+  @include flex(0 1 auto);
+  @include flex-flow(row wrap);
+  margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2;
 }
+
 // Gutter
 //------------------------------------------------//
 %gutter {
-  padding: 0 ($gutter-width / 2);
+  padding: 0 $gutter-width / 2;
 }
 
 // Columns
@@ -36,14 +58,15 @@ $num-cols: 12;
 
 // mixin
 @mixin col($col: flex) {
-  @if ($col == flex) {
-    flex: 1;
-  } @else if (unit($col) == '' and $col >= 1 and $col <= $num-cols) {
+  @if $col == flex {
+    @include flex(1);
+  }
+  @else if unit($col) == "" and $col >= 1 and $col <= $num-cols {
     $perc: 100% / ($num-cols / $col);
-    flex: 0 0 $perc;
+    @include flex(0 0 $perc);
   }
   @else {
-    flex: 1 0 $col;
+    @include flex(1 0 $col);
   }
   @extend %gutter;
 }
