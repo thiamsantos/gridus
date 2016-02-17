@@ -25,17 +25,77 @@ $num-cols: 12;
   display: flex;
 }
 
-@mixin flex($value) {
-  -webkit-box-flex: $value;
-  -webkit-flex: $value;
-  -ms-flex: $value;
-  flex: $value;
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  $fg-boxflex: $fg;
+  @if type-of($fg) == "list" {
+    $fg-boxflex: nth($fg, 1);
+  }
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
 }
 
 @mixin flex-flow($value) {
   -webkit-flex-flow: $value;
   -ms-flex-flow: $value;
   flex-flow: $value;
+}
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+  }
+  @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+  }
+  @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+  }
+  @else if $value == space-around {
+    -ms-flex-pack: distribute;
+  }
+  @else {
+    -webkit-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+  }
+  @else if $value == flex-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+  }
+  @else {
+    -webkit-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  align-items: $value;
+}
+
+@mixin align-content($value: stretch) {
+  -webkit-align-content: $value;
+  -moz-align-content: $value;
+  @if $value == flex-start {
+    -ms-flex-line-pack: start;
+  }
+  @else if $value == flex-end {
+    -ms-flex-line-pack: end;
+  }
+  @else {
+    -ms-flex-line-pack: $value;
+  }
+  align-content: $value;
 }
 
 // Row
@@ -71,231 +131,102 @@ $num-cols: 12;
   @extend %gutter;
 }
 
-// extends the mixin :)
+// extends the mixin
 %col-flex {
-  @include col(flex);
+  @include col;
 }
 
-%col-1 {
-  @include col(1);
+@for $i from 1 through $num-cols {
+  %col-#{$i} {
+    @include col($i);
+  }
 }
 
-%col-2 {
-  @include col(2);
+// Offset
+//------------------------------------------------//
+
+@for $i from 1 through $num-cols - 1 {
+  // mixin
+  @mixin offset($number-of-offset) {
+    margin-left: 100% / ($num-cols / $number-of-offset);
+  }
+  // extends the mixin
+  %offset-#{$i} {
+    @include offset($i);
+  }
 }
 
-%col-3 {
-  @include col(3);
+// Flex Container
+//------------------------------------------------//
+
+// mixin
+@mixin justify($content-value) {
+  @if $content-value == left {
+    @include justify-content(flex-start);
+  }
+  @if $content-value == right {
+    @include justify-content(flex-end);
+  }
+  @if $content-value == center {
+    @include justify-content(center);
+  }
+  @if $content-value == between {
+    @include justify-content(space-between);
+  }
+  @if $content-value == around {
+    @include justify-content(space-around);
+  }
 }
 
-%col-4 {
-  @include col(4);
+// extends the mixin
+%justify-left {
+  @include justify(left);
 }
 
-%col-5 {
-  @include col(5);
+%justify-right {
+  @include justify(right);
 }
 
-%col-6 {
-  @include col(6);
+%justify-center {
+  @include justify(center);
 }
 
-%col-7 {
-  @include col(7);
+%justify-between {
+  @include justify(between);
 }
 
-%col-8 {
-  @include col(8);
+%justify-around {
+  @include justify(around);
 }
 
-%col-9 {
-  @include col(9);
+// Flex Itens
+//------------------------------------------------//
+
+// mixin
+@mixin vertical-align($vertical-value) {
+  @if $vertical-value == top {
+    @include align-items(flex-start);
+    @include align-content(flex-start);
+  }
+  @if $vertical-value == middle {
+    @include align-items(center);
+    @include align-content(center);
+  }
+  @if $vertical-value == bottom {
+    @include align-items(flex-end);
+    @include align-content(flex-end);
+  }
 }
 
-%col-10 {
-  @include col(10);
+// extends the mixin
+%vertical-align-top {
+  @include vertical-align(top);
 }
 
-%col-11 {
-  @include col(11);
+%vertical-align-middle {
+  @include vertical-align(middle);
 }
 
-%col-12 {
-  @include col(12);
+%vertical-align-bottom {
+  @include vertical-align(bottom);
 }
-
-// // for media queries
-// @mixin mq-col($number-of-cols) {
-//   width: ($number-of-cols * $column_width) + ((($number-of-cols - 1) * 2) * $margin);
-// }
-
-// // Offset
-// //------------------------------------------------//
-
-// // mixin
-// @mixin mq-offset($number-of-offset) {
-//   margin-left: ($number-of-offset * $column_width) + ((($number-of-offset - 1) * 2) * $margin) + (3 * $margin);
-// }
-
-// // extends the mixin :)
-// %offset-0 {
-//   @include mq-offset(0);
-// }
-
-// %offset-1 {
-//   @include mq-offset(1);
-// }
-
-// %offset-2 {
-//   @include mq-offset(2);
-// }
-
-// %offset-3 {
-//   @include mq-offset(3);
-// }
-
-// %offset-4 {
-//   @include mq-offset(4);
-// }
-
-// %offset-5 {
-//   @include mq-offset(5);
-// }
-
-// %offset-6 {
-//   @include mq-offset(6);
-// }
-
-// %offset-7 {
-//   @include mq-offset(7);
-// }
-
-// %offset-8 {
-//   @include mq-offset(8);
-// }
-
-// %offset-9 {
-//   @include mq-offset(9);
-// }
-
-// %offset-10 {
-//   @include mq-offset(10);
-// }
-
-// %offset-11 {
-//   @include mq-offset(11);
-// }
-
-// // Flex Container
-// //------------------------------------------------//
-
-// // mixin
-// @mixin mq-justify($content-value) {
-
-//   @if ($content-value == left) {
-//     -webkit-box-pack: start;
-//     -webkit-justify-content: flex-start;
-//     -ms-flex-pack: start;
-//     justify-content: flex-start;
-//   }
-
-//   @if ($content-value == right) {
-//     -webkit-box-pack: end;
-//     -webkit-justify-content: flex-end;
-//     -ms-flex-pack: end;
-//     justify-content: flex-end;
-//   }
-
-//   @if ($content-value == center) {
-//     -webkit-box-pack: center;
-//     -webkit-justify-content: center;
-//     -ms-flex-pack: center;
-//     justify-content: center;
-//   }
-
-//   @if ($content-value == between) {
-//     -webkit-box-pack: justify;
-//     -webkit-justify-content: space-between;
-//     -ms-flex-pack: justify;
-//     justify-content: space-between;
-//   }
-
-//   @if ($content-value == around) {
-//     -webkit-justify-content: space-around;
-//     -ms-flex-pack: distribute;
-//     justify-content: space-around;
-//   }
-
-// }
-
-// // extends the mixin :)
-// %justify-left {
-//   @include mq-justify(left);
-// }
-
-// %justify-right {
-//   @include mq-justify(right);
-// }
-
-// %justify-center {
-//   @include mq-justify(center);
-// }
-
-// %justify-between {
-//   @include mq-justify(between);
-// }
-
-// %justify-around {
-//   @include mq-justify(around);
-// }
-
-// // Flex Itens
-// //------------------------------------------------//
-
-// // mixin
-// @mixin mq-vertical-align($vertical-value) {
-
-//   @if ($vertical-value == top) {
-//     -webkit-box-align: start;
-//     -webkit-align-items: flex-start;
-//     -ms-flex-align: start;
-//     align-items: flex-start;
-//     -webkit-align-content: flex-start;
-//     -ms-flex-line-pack: start;
-//     align-content: flex-start;
-//   }
-
-//   @if ($vertical-value == middle) {
-//     -webkit-box-align: center;
-//     -webkit-align-items: center;
-//     -ms-flex-align: center;
-//     align-items: center;
-//     -webkit-align-content: center;
-//     -ms-flex-line-pack: center;
-//     align-content: center;
-//   }
-
-//   @if ($vertical-value == bottom) {
-//     -webkit-box-align: end;
-//     -webkit-align-items: flex-end;
-//     -ms-flex-align: end;
-//     align-items: flex-end;
-//     -webkit-align-content: flex-end;
-//     -ms-flex-line-pack: end;
-//     align-content: flex-end;
-//   }
-
-// }
-
-// // extends the mixin :)
-// %vertical-align-top {
-//   @include mq-vertical-align(top);
-// }
-
-// %vertical-align-middle {
-//   @include mq-vertical-align(middle);
-// }
-
-// %vertical-align-bottom {
-//   @include mq-vertical-align(bottom);
-// }

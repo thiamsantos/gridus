@@ -22,15 +22,62 @@ $num-cols: 12
   display: -webkit-flex
   display: -ms-flexbox
   display: flex
-=flex($value)
-  -webkit-box-flex: $value
-  -webkit-flex: $value
-  -ms-flex: $value
-  flex: $value
+
+=flex($fg: 1, $fs: null, $fb: null)
+  $fg-boxflex: $fg
+  @if type-of($fg) == "list"
+    $fg-boxflex: nth($fg, 1)
+  -webkit-box-flex: $fg-boxflex
+  -webkit-flex: $fg $fs $fb
+  -ms-flex: $fg $fs $fb
+  flex: $fg $fs $fb
+
 =flex-flow($value)
   -webkit-flex-flow: $value
   -ms-flex-flow: $value
   flex-flow: $value
+
+=justify-content($value: flex-start)
+  @if $value == flex-start
+    -webkit-box-pack: start
+    -ms-flex-pack: start
+  @else if $value == flex-end
+    -webkit-box-pack: end
+    -ms-flex-pack: end
+  @else if $value == space-between
+    -webkit-box-pack: justify
+    -ms-flex-pack: justify
+  @else if $value == space-around
+    -ms-flex-pack: distribute
+  @else
+    -webkit-box-pack: $value
+    -ms-flex-pack: $value
+  -webkit-justify-content: $value
+  justify-content: $value
+
+=align-items($value: stretch)
+  @if $value == flex-start
+    -webkit-box-align: start
+    -ms-flex-align: start
+  @else if $value == flex-end
+    -webkit-box-align: end
+    -ms-flex-align: end
+  @else
+    -webkit-box-align: $value
+    -ms-flex-align: $value
+  -webkit-align-items: $value
+  align-items: $value
+
+=align-content($value: stretch)
+  -webkit-align-content: $value
+  -moz-align-content: $value
+  @if $value == flex-start
+    -ms-flex-line-pack: start
+  @else if $value == flex-end
+    -ms-flex-line-pack: end
+  @else
+    -ms-flex-line-pack: $value
+  align-content: $value
 
 // Row
 //------------------------------------------------//
@@ -57,44 +104,82 @@ $num-cols: 12
     +flex(0 0 $perc)
   @else
     +flex(1 0 $col)
+
   @extend %gutter
 
-// extends the mixin :)
+// extends the mixin
 %col-flex
-  +col(flex)
+  +col
 
-%col-1
-  +col(1)
+@for $i from 1 through $num-cols
+  %col-#{$i}
+    +col($i)
 
-%col-2
-  +col(2)
+// Offset
+//------------------------------------------------//
 
-%col-3
-  +col(3)
+@for $i from 1 through ($num-cols - 1)
+  // mixin
+  =offset($number-of-offset)
+    margin-left: 100% / ($num-cols / $number-of-offset)
 
-%col-4
-  +col(4)
+  // extends the mixin
+  %offset-#{$i}
+    +offset($i)
 
-%col-5
-  +col(5)
+// Flex Container
+//------------------------------------------------//
 
-%col-6
-  +col(6)
+// mixin
+=justify($content-value)
+  @if $content-value == left
+    +justify-content(flex-start)
+  @if $content-value == right
+    +justify-content(flex-end)
+  @if $content-value == center
+    +justify-content(center)
+  @if $content-value == between
+    +justify-content(space-between)
+  @if $content-value == around
+    +justify-content(space-around)
 
-%col-7
-  +col(7)
+// extends the mixin
+%justify-left
+  +justify(left)
 
-%col-8
-  +col(8)
+%justify-right
+  +justify(right)
 
-%col-9
-  +col(9)
+%justify-center
+  +justify(center)
 
-%col-10
-  +col(10)
+%justify-between
+  +justify(between)
 
-%col-11
-  +col(11)
+%justify-around
+  +justify(around)
 
-%col-12
-  +col(12)
+// Flex Itens
+//------------------------------------------------//
+
+// mixin
+=vertical-align($vertical-value)
+  @if $vertical-value == top
+    +align-items(flex-start)
+    +align-content(flex-start)
+  @if $vertical-value == middle
+    +align-items(center)
+    +align-content(center)
+  @if $vertical-value == bottom
+    +align-items(flex-end)
+    +align-content(flex-end)
+
+// extends the mixin
+%vertical-align-top
+  +vertical-align(top)
+
+%vertical-align-middle
+  +vertical-align(middle)
+
+%vertical-align-bottom
+  +vertical-align(bottom)
