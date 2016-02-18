@@ -2,7 +2,7 @@
 A semantic flexbox grid for sass
 
 ## Install
-`npm install`
+`bower install sassgrid`
 
 ## Supported browsers
 The same support that flexbox feature has.
