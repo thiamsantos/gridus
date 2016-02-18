@@ -1,0 +1,26 @@
+{
+  "name": "sassgrid",
+  "description": "A semantic flexbox grid build with sass",
+  "main": "sassgrid.sass",
+  "authors": [
+    "Thiago Santos"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sass",
+    "grid",
+    "semantic"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "https://thiamsantos.github.io/sassgrid/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
