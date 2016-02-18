@@ -15,7 +15,7 @@
     "globals"
   ],
   "homepage": "https://thiamsantos.github.io/sassgrid/",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
