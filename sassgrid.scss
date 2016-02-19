@@ -107,6 +107,12 @@ $num-cols: 12;
   margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2;
 }
 
+%column {
+  @include flexbox();
+  @include flex(0 1 auto);
+  @include flex-flow(column wrap);
+}
+
 // Gutter
 //------------------------------------------------//
 %gutter {
