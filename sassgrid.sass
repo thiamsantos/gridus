@@ -87,6 +87,11 @@ $num-cols: 12
   +flex-flow(row wrap)
   margin: 0 -($gutter-width / 2) $gutter-width -($gutter-width / 2)
 
+%column
+  +flexbox
+  +flex(0 1 auto)
+  +flex-flow(column wrap)
+
 // Gutter
 //------------------------------------------------//
 %gutter
@@ -163,7 +168,7 @@ $num-cols: 12
 //------------------------------------------------//
 
 // mixin
-=vertical-align($vertical-value)
+=align($vertical-value)
   @if $vertical-value == top
     +align-items(flex-start)
     +align-content(flex-start)
@@ -175,11 +180,11 @@ $num-cols: 12
     +align-content(flex-end)
 
 // extends the mixin
-%vertical-align-top
-  +vertical-align(top)
+%align-top
+  +align(top)
 
-%vertical-align-middle
-  +vertical-align(middle)
+%align-middle
+  +align(middle)
 
-%vertical-align-bottom
-  +vertical-align(bottom)
+%align-bottom
+  +align(bottom)
