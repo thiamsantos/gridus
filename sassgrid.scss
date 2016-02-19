@@ -18,7 +18,7 @@ $num-cols: 12;
 
 // Prefixer
 // ------------------------------------------------//
-@mixin flexbox {
+@mixin flexbox() {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -101,7 +101,7 @@ $num-cols: 12;
 // Row
 //------------------------------------------------//
 %row {
-  @include flexbox;
+  @include flexbox();
   @include flex(0 1 auto);
   @include flex-flow(row wrap);
   margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2;
@@ -163,12 +163,15 @@ $num-cols: 12;
 @mixin justify($content-value) {
   @if $content-value == left {
     @include justify-content(flex-start);
+    text-align: start;
   }
   @if $content-value == right {
     @include justify-content(flex-end);
+    text-align: end;
   }
   @if $content-value == center {
     @include justify-content(center);
+    text-align: center;
   }
   @if $content-value == between {
     @include justify-content(space-between);

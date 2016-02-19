@@ -85,12 +85,7 @@ $num-cols: 12
   +flexbox
   +flex(0 1 auto)
   +flex-flow(row wrap)
-  margin: 0 -($gutter-width / 2) $gutter-width -($gutter-width / 2)
-
-%column
-  +flexbox
-  +flex(0 1 auto)
-  +flex-flow(column wrap)
+  margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2
 
 // Gutter
 //------------------------------------------------//
@@ -109,7 +104,6 @@ $num-cols: 12
     +flex(0 0 $perc)
   @else
     +flex(1 0 $col)
-
   @extend %gutter
 
 // extends the mixin
@@ -123,11 +117,10 @@ $num-cols: 12
 // Offset
 //------------------------------------------------//
 
-@for $i from 1 through ($num-cols - 1)
+@for $i from 1 through $num-cols - 1
   // mixin
   =offset($number-of-offset)
     margin-left: 100% / ($num-cols / $number-of-offset)
-
   // extends the mixin
   %offset-#{$i}
     +offset($i)
@@ -139,10 +132,13 @@ $num-cols: 12
 =justify($content-value)
   @if $content-value == left
     +justify-content(flex-start)
+    text-align: start
   @if $content-value == right
     +justify-content(flex-end)
+    text-align: end
   @if $content-value == center
     +justify-content(center)
+    text-align: center
   @if $content-value == between
     +justify-content(space-between)
   @if $content-value == around
@@ -168,7 +164,7 @@ $num-cols: 12
 //------------------------------------------------//
 
 // mixin
-=align($vertical-value)
+=vertical-align($vertical-value)
   @if $vertical-value == top
     +align-items(flex-start)
     +align-content(flex-start)
@@ -180,11 +176,11 @@ $num-cols: 12
     +align-content(flex-end)
 
 // extends the mixin
-%align-top
-  +align(top)
+%vertical-align-top
+  +vertical-align(top)
 
-%align-middle
-  +align(middle)
+%vertical-align-middle
+  +vertical-align(middle)
 
-%align-bottom
-  +align(bottom)
+%vertical-align-bottom
+  +vertical-align(bottom)
