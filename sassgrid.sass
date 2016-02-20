@@ -2,18 +2,13 @@
 
 // Repository: https://github.com/thiamsantos/sassgrid.git
 // Author: Thiago Santos
-// Version: 0.1
+// Version: 0.1.0
 // Licence: MIT - https://github.com/thiamsantos/sassgrid/LICENSE
 
 // Variables
 //------------------------------------------------//
 $gutter-width: 1rem
 $num-cols: 12
-
-// Box Model
-// ------------------------------------------------//
-*
-  box-sizing: border-box
 
 // Prefixer
 // ------------------------------------------------//
@@ -25,8 +20,10 @@ $num-cols: 12
 
 =flex($fg: 1, $fs: null, $fb: null)
   $fg-boxflex: $fg
+
   @if type-of($fg) == "list"
     $fg-boxflex: nth($fg, 1)
+
   -webkit-box-flex: $fg-boxflex
   -webkit-flex: $fg $fs $fb
   -ms-flex: $fg $fs $fb
@@ -52,6 +49,7 @@ $num-cols: 12
   @else
     -webkit-box-pack: $value
     -ms-flex-pack: $value
+
   -webkit-justify-content: $value
   justify-content: $value
 
@@ -65,29 +63,32 @@ $num-cols: 12
   @else
     -webkit-box-align: $value
     -ms-flex-align: $value
+
   -webkit-align-items: $value
   align-items: $value
 
 =align-content($value: stretch)
   -webkit-align-content: $value
   -moz-align-content: $value
+
   @if $value == flex-start
     -ms-flex-line-pack: start
   @else if $value == flex-end
     -ms-flex-line-pack: end
   @else
     -ms-flex-line-pack: $value
+
   align-content: $value
 
 // Row
 //------------------------------------------------//
-%row
+=row
   +flexbox
   +flex(0 1 auto)
   +flex-flow(row wrap)
-  margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2
+  margin: (0 - $gutter-width / 2) ($gutter-width - $gutter-width / 2)
 
-%column
+=column
   +flexbox
   +flex(0 1 auto)
   +flex-flow(column wrap)
@@ -95,7 +96,7 @@ $num-cols: 12
 // Gutter
 //------------------------------------------------//
 %gutter
-  padding: 0 $gutter-width / 2
+  padding: 0 ($gutter-width / 2)
 
 // Columns
 //------------------------------------------------//
@@ -107,17 +108,12 @@ $num-cols: 12
   @else if unit($col) == "" and $col >= 1 and $col <= $num-cols
     $perc: 100% / ($num-cols / $col)
     +flex(0 0 $perc)
+  @else if unit($col) == "" and $col > $num-cols
+    @warn "That value is not accepted"
   @else
     +flex(1 0 $col)
+
   @extend %gutter
-
-// extends the mixin
-%col-flex
-  +col
-
-@for $i from 1 through $num-cols
-  %col-#{$i}
-    +col($i)
 
 // Offset
 //------------------------------------------------//
@@ -126,9 +122,6 @@ $num-cols: 12
   // mixin
   =offset($number-of-offset)
     margin-left: 100% / ($num-cols / $number-of-offset)
-  // extends the mixin
-  %offset-#{$i}
-    +offset($i)
 
 // Flex Container
 //------------------------------------------------//
@@ -137,33 +130,24 @@ $num-cols: 12
 =justify($content-value)
   @if $content-value == left
     +justify-content(flex-start)
+
     text-align: start
+
   @if $content-value == right
     +justify-content(flex-end)
+
     text-align: end
+
   @if $content-value == center
     +justify-content(center)
+
     text-align: center
+
   @if $content-value == between
     +justify-content(space-between)
+
   @if $content-value == around
     +justify-content(space-around)
-
-// extends the mixin
-%justify-left
-  +justify(left)
-
-%justify-right
-  +justify(right)
-
-%justify-center
-  +justify(center)
-
-%justify-between
-  +justify(between)
-
-%justify-around
-  +justify(around)
 
 // Flex Itens
 //------------------------------------------------//
@@ -172,20 +156,15 @@ $num-cols: 12
 =vertical-align($vertical-value)
   @if $vertical-value == top
     +align-items(flex-start)
+
     +align-content(flex-start)
+
   @if $vertical-value == middle
     +align-items(center)
+
     +align-content(center)
+
   @if $vertical-value == bottom
     +align-items(flex-end)
+
     +align-content(flex-end)
-
-// extends the mixin
-%vertical-align-top
-  +vertical-align(top)
-
-%vertical-align-middle
-  +vertical-align(middle)
-
-%vertical-align-bottom
-  +vertical-align(bottom)

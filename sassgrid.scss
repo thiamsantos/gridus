@@ -2,7 +2,7 @@
 
 // Repository: https://github.com/thiamsantos/sassgrid.git
 // Author: Thiago Santos
-// Version: 0.1
+// Version: 0.1.0
 // Licence: MIT - https://github.com/thiamsantos/sassgrid/LICENSE
 
 // Variables
@@ -10,15 +10,9 @@
 $gutter-width: 1rem;
 $num-cols: 12;
 
-// Box Model
-// ------------------------------------------------//
-* {
-  box-sizing: border-box;
-}
-
 // Prefixer
 // ------------------------------------------------//
-@mixin flexbox() {
+@mixin flexbox {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -27,9 +21,11 @@ $num-cols: 12;
 
 @mixin flex($fg: 1, $fs: null, $fb: null) {
   $fg-boxflex: $fg;
+
   @if type-of($fg) == "list" {
     $fg-boxflex: nth($fg, 1);
   }
+
   -webkit-box-flex: $fg-boxflex;
   -webkit-flex: $fg $fs $fb;
   -ms-flex: $fg $fs $fb;
@@ -62,6 +58,7 @@ $num-cols: 12;
     -webkit-box-pack: $value;
     -ms-flex-pack: $value;
   }
+
   -webkit-justify-content: $value;
   justify-content: $value;
 }
@@ -79,6 +76,7 @@ $num-cols: 12;
     -webkit-box-align: $value;
     -ms-flex-align: $value;
   }
+
   -webkit-align-items: $value;
   align-items: $value;
 }
@@ -86,6 +84,7 @@ $num-cols: 12;
 @mixin align-content($value: stretch) {
   -webkit-align-content: $value;
   -moz-align-content: $value;
+
   @if $value == flex-start {
     -ms-flex-line-pack: start;
   }
@@ -95,28 +94,34 @@ $num-cols: 12;
   @else {
     -ms-flex-line-pack: $value;
   }
+
   align-content: $value;
 }
 
 // Row
 //------------------------------------------------//
-%row {
-  @include flexbox();
+@mixin row {
+  @include flexbox;
+
   @include flex(0 1 auto);
+
   @include flex-flow(row wrap);
-  margin: 0 - $gutter-width / 2 $gutter-width - $gutter-width / 2;
+
+  margin: (0 - $gutter-width / 2) ($gutter-width - $gutter-width / 2);
 }
 
-%column {
-  @include flexbox();
+@mixin column {
+  @include flexbox;
+
   @include flex(0 1 auto);
+
   @include flex-flow(column wrap);
 }
 
 // Gutter
 //------------------------------------------------//
 %gutter {
-  padding: 0 $gutter-width / 2;
+  padding: 0 ($gutter-width / 2);
 }
 
 // Columns
@@ -129,23 +134,17 @@ $num-cols: 12;
   }
   @else if unit($col) == "" and $col >= 1 and $col <= $num-cols {
     $perc: 100% / ($num-cols / $col);
+
     @include flex(0 0 $perc);
+  }
+  @else if unit($col) == "" and $col > $num-cols {
+    @warn "That value is not accepted";
   }
   @else {
     @include flex(1 0 $col);
   }
+
   @extend %gutter;
-}
-
-// extends the mixin
-%col-flex {
-  @include col;
-}
-
-@for $i from 1 through $num-cols {
-  %col-#{$i} {
-    @include col($i);
-  }
 }
 
 // Offset
@@ -156,10 +155,6 @@ $num-cols: 12;
   @mixin offset($number-of-offset) {
     margin-left: 100% / ($num-cols / $number-of-offset);
   }
-  // extends the mixin
-  %offset-#{$i} {
-    @include offset($i);
-  }
 }
 
 // Flex Container
@@ -169,43 +164,29 @@ $num-cols: 12;
 @mixin justify($content-value) {
   @if $content-value == left {
     @include justify-content(flex-start);
+
     text-align: start;
   }
+
   @if $content-value == right {
     @include justify-content(flex-end);
+
     text-align: end;
   }
+
   @if $content-value == center {
     @include justify-content(center);
+
     text-align: center;
   }
+
   @if $content-value == between {
     @include justify-content(space-between);
   }
+
   @if $content-value == around {
     @include justify-content(space-around);
   }
-}
-
-// extends the mixin
-%justify-left {
-  @include justify(left);
-}
-
-%justify-right {
-  @include justify(right);
-}
-
-%justify-center {
-  @include justify(center);
-}
-
-%justify-between {
-  @include justify(between);
-}
-
-%justify-around {
-  @include justify(around);
 }
 
 // Flex Itens
@@ -215,27 +196,19 @@ $num-cols: 12;
 @mixin vertical-align($vertical-value) {
   @if $vertical-value == top {
     @include align-items(flex-start);
+
     @include align-content(flex-start);
   }
+
   @if $vertical-value == middle {
     @include align-items(center);
+
     @include align-content(center);
   }
+
   @if $vertical-value == bottom {
     @include align-items(flex-end);
+
     @include align-content(flex-end);
   }
-}
-
-// extends the mixin
-%vertical-align-top {
-  @include vertical-align(top);
-}
-
-%vertical-align-middle {
-  @include vertical-align(middle);
-}
-
-%vertical-align-bottom {
-  @include vertical-align(bottom);
 }

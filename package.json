@@ -1,0 +1,20 @@
+{
+  "name": "sassgrid",
+  "version": "1.0.0",
+  "description": "A semantic flexbox grid for sass",
+  "author": "Thiago Santos",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thiamsantos/sassgrid.git"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-watch": "^4.3.5",
+    "sass-convert": "^0.5.2"
+  }
+}
