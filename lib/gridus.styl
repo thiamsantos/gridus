@@ -1,0 +1,83 @@
+// Variables
+//------------------------------------------------//
+$gutter-width = 1rem
+$num-cols = 12
+// Row
+//------------------------------------------------//
+row()
+  display flex
+  flex 0 1 auto
+  flex-flow row wrap
+
+column()
+  display flex
+  flex 0 1 auto
+  flex-flow column wrap
+
+// Gutter
+//------------------------------------------------//
+gutter()
+  padding-left: ($gutter-width / 2)
+// Columns
+//------------------------------------------------//
+
+// mixin
+col($col = flex)
+  if $col == flex
+    flex 1
+  else if unit($col) == '' and $col >= 1 and $col <= $num-cols
+    $perc = 100% / ($num-cols / $col)
+    flex 0 0 $perc
+  else if unit($col) == '' and $col > $num-cols
+    error('' + $col + ' is not a accepted value.')
+  else
+    flex 1 0 $col
+  gutter()
+
+// Offset
+//------------------------------------------------//
+
+for $i in (1)..($num-cols - 1)
+  // mixin
+  offset($number-of-offset)
+    if $number-of-offset >= 12 or $number-of-offset <= 0
+      error('' + $number-of-offset + ' is not a accepted value.')
+    margin-left: (100% / ($num-cols / $number-of-offset))
+
+// Flex Container
+//------------------------------------------------//
+
+// mixin
+justify($content-value)
+  if $content-value == 'left'
+    justify-content flex-start
+    text-align start
+  else if $content-value == 'right'
+    justify-content flex-end
+    text-align end
+  else if $content-value == 'center'
+    justify-content center
+    text-align center
+  else if $content-value == 'between'
+    justify-content space-between
+  else if $content-value == 'around'
+    justify-content space-around
+  else
+    error('' + $content-value + ' is not a accepted value.')
+
+// Flex Itens
+//------------------------------------------------//
+
+// mixin
+vertical-align($vertical-value)
+  if $vertical-value == 'top'
+    align-items flex-start
+    align-content flex-start
+  else if $vertical-value == 'middle'
+    align-items center
+    align-content center
+  else if $vertical-value == 'bottom'
+    align-items flex-end
+    align-content flex-end
+  else
+    error('' + $content-value + ' is not a accepted value.')

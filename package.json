@@ -1,20 +1,30 @@
 {
-  "name": "sassgrid",
-  "version": "1.0.0",
-  "description": "A semantic flexbox grid for sass",
-  "author": "Thiago Santos",
-  "main": "index.html",
+  "name": "gridus",
+  "version": "0.1.0",
+  "description": "A semantic flexbox grid made with stylus",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thiamsantos/sassgrid.git"
+    "url": "git+https://github.com/thiamsantos/gridus.git"
   },
-  "license": "ISC",
+  "keywords": [
+    "stylus",
+    "grid",
+    "flexbox"
+  ],
+  "author": "Thiago Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thiamsantos/gridus/issues"
+  },
+  "homepage": "https://github.com/thiamsantos/gridus#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-watch": "^4.3.5",
-    "sass-convert": "^0.5.2"
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-stylint": "^3.0.0",
+    "gulp-stylus": "^2.5.0"
   }
 }

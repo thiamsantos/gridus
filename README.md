@@ -1,8 +1,8 @@
-# SassGrid
-A semantic flexbox grid for sass
+# gridus
+A semantic flexbox grid made with stylus.
 
-## Install
-`bower install sassgrid`
+<!-- ## Install
+`bower install sassgrid` -->
 
 ## Supported browsers
 The same support that flexbox feature has.
@@ -16,4 +16,4 @@ See the support at [Can I Use](http://caniuse.com/#feat=flexbox)
 * Pull request MAY then be accepted
 
 ## License
-[MIT License](https://github.com/thiamsantos/sassgrid/blob/master/LICENSE.md) © [Thiago Santos](https://github.com/thiamsantos)
+[MIT License](https://github.com/thiamsantos/gridus/blob/master/LICENSE.md) © [Thiago Santos](https://github.com/thiamsantos)
