@@ -1,6 +1,6 @@
 {
   "name": "gridus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A semantic flexbox grid made with stylus",
   "main": "index.js",
   "scripts": {
