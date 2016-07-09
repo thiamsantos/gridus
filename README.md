@@ -1,5 +1,5 @@
 # gridus
-A semantic flexbox grid made with stylus.It provides eight mixins with the higher powers of flexbox.
+A semantic flexbox grid made with stylus. It provides eight mixins with the higher powers of flexbox.
 
 `npm install --save-dev gridus`
 
