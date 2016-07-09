@@ -1,7 +1,7 @@
 // Variables
 //------------------------------------------------//
 $gutter-width = 1rem
-$num-cols = 12
+$num-cells = 12
 // Row
 //------------------------------------------------//
 row()
@@ -16,68 +16,73 @@ column()
 
 // Gutter
 //------------------------------------------------//
-gutter()
-  padding-left: ($gutter-width / 2)
+gutter-inside()
+  padding 0 ($gutter-width / 2)
+
+gutter-outside()
+  margin-left 0 ($gutter-width / 2)
 // Columns
 //------------------------------------------------//
 
 // mixin
-col($col = flex)
-  if $col == flex
+cell($cell = flex, $gutter = 'inside')
+  if $cell == flex
     flex 1
-  else if unit($col) == '' and $col >= 1 and $col <= $num-cols
-    $perc = 100% / ($num-cols / $col)
+  else if unit($cell) == '' and $cell >= 1 and $cell <= $num-cells
+    $perc = 100% / ($num-cells / $cell)
     flex 0 0 $perc
-  else if unit($col) == '' and $col > $num-cols
-    error('' + $col + ' is not a accepted value.')
+  else if unit($cell) == '' and $cell > $num-cells
+    error('' + $cell + ' is not a accepted value.')
   else
-    flex 1 0 $col
-  gutter()
+    flex 1 0 $cell
+
+  if $gutter == 'inside'
+    gutter-inside()
+  else
+    gutter-outside()
 
 // Offset
 //------------------------------------------------//
 
-for $i in (1)..($num-cols - 1)
-  // mixin
-  offset($number-of-offset)
-    if $number-of-offset >= 12 or $number-of-offset <= 0
-      error('' + $number-of-offset + ' is not a accepted value.')
-    margin-left: (100% / ($num-cols / $number-of-offset))
+offset($number-of-offset)
+  if $number-of-offset >= 12 or $number-of-offset <= 0
+    error('' + $number-of-offset + ' is not a accepted value.')
+  margin-left: (100% / ($num-cells / $number-of-offset))
 
 // Flex Container
 //------------------------------------------------//
 
 // mixin
-justify($content-value)
-  if $content-value == 'left'
+justify($value)
+  if $value == 'left'
     justify-content flex-start
     text-align start
-  else if $content-value == 'right'
+  else if $value == 'right'
     justify-content flex-end
     text-align end
-  else if $content-value == 'center'
+  else if $value == 'center'
     justify-content center
     text-align center
-  else if $content-value == 'between'
+  else if $value == 'between'
     justify-content space-between
-  else if $content-value == 'around'
+  else if $value == 'around'
     justify-content space-around
   else
-    error('' + $content-value + ' is not a accepted value.')
+    error('' + $value + ' is not a accepted value.')
 
 // Flex Itens
 //------------------------------------------------//
 
 // mixin
-vertical-align($vertical-value)
-  if $vertical-value == 'top'
+align($value)
+  if $value == 'begin'
     align-items flex-start
     align-content flex-start
-  else if $vertical-value == 'middle'
+  else if $value == 'middle'
     align-items center
     align-content center
-  else if $vertical-value == 'bottom'
+  else if $value == 'end'
     align-items flex-end
     align-content flex-end
   else
-    error('' + $content-value + ' is not a accepted value.')
+    error('' + $value + ' is not a accepted value.')
