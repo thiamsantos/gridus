@@ -1,8 +1,7 @@
 # gridus
 A semantic flexbox grid made with stylus.It provides eight mixins with the higher powers of flexbox.
 
-<!-- ## Install
-`bower install sassgrid` -->
+`npm install --save-dev gridus`
 
 ## Supported browsers
 The same support that flexbox feature has.
