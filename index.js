@@ -1,5 +1,5 @@
 module.exports = function(opts) {
   return function(style) {
-    style.include(__dirname + '/gridus.styl');
+    style.import(__dirname + '/gridus.styl');
   };
 };

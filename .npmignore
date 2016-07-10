@@ -1,6 +1,6 @@
 node_modules/
 .editorconfig
-LICENSE.md
-README.md
+./LICENSE.md
+./README.md
 gulpfile.js
 test/
