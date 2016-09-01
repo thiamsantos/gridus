@@ -1,0 +1,12 @@
+align($value)
+  if $value == 'begin'
+    align-content flex-start
+    align-items flex-start
+  else if $value == 'middle'
+    align-content center
+    align-items center
+  else if $value == 'end'
+    align-content flex-end
+    align-items flex-end
+  else
+    error('' + $value + ' is not a accepted value.')

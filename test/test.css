@@ -9,15 +9,13 @@
   display: flex;
   flex: 0 1 auto;
   flex-flow: column wrap;
-  align-items: center;
-  align-content: center;
 }
 .col-1 {
   flex: 0 0 16.666666666666668%;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
 }
 .col {
   flex: 1 0 300px;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
   margin-left: 16.666666666666668%;
 }

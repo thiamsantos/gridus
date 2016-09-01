@@ -1,0 +1,16 @@
+justify($value)
+  if $value == 'left'
+    justify-content flex-start
+    text-align start
+  else if $value == 'right'
+    justify-content flex-end
+    text-align end
+  else if $value == 'center'
+    justify-content center
+    text-align center
+  else if $value == 'between'
+    justify-content space-between
+  else if $value == 'around'
+    justify-content space-around
+  else
+    error('' + $value + ' is not a accepted value.')

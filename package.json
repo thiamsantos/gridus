@@ -4,7 +4,8 @@
   "description": "A semantic flexbox grid made with stylus",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "stylus -u ./index.js test/test.styl",
+    "stylint": "stylint lib/ -c .stylintrc"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,7 @@
   },
   "homepage": "https://github.com/thiamsantos/gridus#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-plumber": "^1.1.0",
-    "gulp-stylint": "^3.0.0",
-    "gulp-stylus": "^2.5.0"
+    "stylint": "^1.5.6",
+    "stylus": "^0.54.5"
   }
 }

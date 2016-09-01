@@ -1,0 +1,5 @@
+offset($number-of-offset)
+  if $number-of-offset >= 12 or $number-of-offset <= 0
+    error('' + $number-of-offset + ' is not a accepted value.')
+
+  margin-left: (100% / ($num-cells / $number-of-offset))

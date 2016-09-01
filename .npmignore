@@ -1,6 +1,6 @@
 node_modules/
 .editorconfig
+.stylintrc
 ./LICENSE.md
 ./README.md
-gulpfile.js
 test/

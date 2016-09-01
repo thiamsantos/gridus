@@ -10,7 +10,7 @@ See the support at [Can I Use](http://caniuse.com/#feat=flexbox)
 ## Usage
 ### Import
 ``` stylus
-import 'path-to-gridus/index.styl'
+@import 'path-to-gridus/index.styl'
 ```
 ### Gulp
 To use with gulp just first install the npm package and then add to use add to your gulpfile as a plugin of stylus.
@@ -28,6 +28,8 @@ gulp.task('stylus', () =>
     }))
     .pipe(gulp.dest('dist/')));
 ```
+### Stylus cli
+`$ stylus --use gridus src -o dist`
 
 ### Grid settings
 

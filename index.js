@@ -1,5 +1,7 @@
+var path = require('path');
+
 module.exports = function(opts) {
   return function(style) {
-    style.import(__dirname + '/gridus.styl');
+    style.import(path.join(__dirname + '/gridus.styl'));
   };
 };
