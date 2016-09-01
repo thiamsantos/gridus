@@ -1,6 +1,8 @@
 # gridus
 A semantic flexbox grid made with stylus. It provides eight mixins with the higher powers of flexbox.
 
+Is fully recommended the use of [autoprefixer-stylus](https://github.com/jescalan/autoprefixer-stylus) along with gridus, because it adds all vendor-prefixers necessary to flexbox works on every modern browser.
+
 `npm install --save-dev gridus`
 
 ## Supported browsers
