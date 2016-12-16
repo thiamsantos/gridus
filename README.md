@@ -1,20 +1,40 @@
 # gridus
+[![Travis](https://img.shields.io/travis/thiamsantos/gridus.svg)](https://travis-ci.org/thiamsantos/gridus)
+[![npm (scoped)](https://img.shields.io/npm/v/gridus.svg)](https://www.npmjs.com/package/gridus)
+[![npm](https://img.shields.io/npm/l/gridus.svg)](LICENSE.md)
 A semantic flexbox grid made with stylus. It provides eight mixins with the higher powers of flexbox.
 
-Is fully recommended the use of [autoprefixer-stylus](https://github.com/jescalan/autoprefixer-stylus) along with gridus, because it adds all vendor-prefixers necessary to flexbox works on every modern browser.
+*Note: Is fully recommended the use of [autoprefixer-stylus](https://github.com/jescalan/autoprefixer-stylus) along with gridus, because it adds all vendor-prefixers necessary to flexbox works on every modern browser.*
 
-`npm install --save-dev gridus`
+## Table of contents
+- [Installation](#installation)
+- [Support](#support)
+- [Usage](#usage)
+  - [Import](#import)
+  - [Stylus CLI](#stylus-cli)
+  - [Stylus API](#stylus-api)
+  - [Gulp](#gulp)
+  - [Grunt](#grunt)
+- [Examples](#examples)
+- [Mixins](#mixins)
+  - [Align](#align)
+  - [Cell](#cell)
 
-## Supported browsers
+## Installation
+```bash
+npm install --save-dev gridus
+```
+
+## Support
 The same support that flexbox feature has.
 See the support at [Can I Use](http://caniuse.com/#feat=flexbox)
 
 ## Usage
-### Import
+##### Import
 ``` stylus
 @import 'path-to-gridus/index.styl'
 ```
-### Gulp
+##### Gulp
 To use with gulp just first install the npm package and then add to use add to your gulpfile as a plugin of stylus.
 ``` javascript
 const gulp = require('gulp'),
@@ -30,7 +50,7 @@ gulp.task('stylus', () =>
     }))
     .pipe(gulp.dest('dist/')));
 ```
-### Stylus cli
+##### Stylus cli
 `$ stylus --use gridus src -o dist`
 
 ### Grid settings
