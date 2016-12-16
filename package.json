@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "stylus -u ./index.js test/test.styl",
-    "stylint": "stylint lib/ -c .stylintrc"
+    "lint": "stylint lib/ -c .stylintrc"
   },
   "repository": {
     "type": "git",
