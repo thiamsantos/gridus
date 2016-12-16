@@ -1,7 +1,3 @@
-node_modules/
 .editorconfig
 .stylintrc
-./LICENSE.md
-./README.md
 test/
-*.log
