@@ -1,7 +1,11 @@
-var path = require('path');
+var path = require('path')
+var pkg = require('./package.json')
 
-module.exports = function(opts) {
-  return function(style) {
-    style.import(path.join(__dirname + '/gridus.styl'));
-  };
-};
+exports = module.exports = function (opts) {
+  return function (style) {
+    style.include(__dirname)
+  }
+}
+
+exports.libname = pkg.name
+exports.version = pkg.version
