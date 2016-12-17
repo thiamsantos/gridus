@@ -1,0 +1,12 @@
+.gutter-default {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.gutter-size {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.gutter-size-outside {
+  margin-left: 5px;
+  margin-right: 5px;
+}

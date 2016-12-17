@@ -1,8 +1,8 @@
-align($value)
-  if $value == 'begin'
+align($value = 'center')
+  if $value == 'start'
     align-content flex-start
     align-items flex-start
-  else if $value == 'middle'
+  else if $value == 'center'
     align-content center
     align-items center
   else if $value == 'end'

@@ -8,7 +8,9 @@ Use your best judgment, and feel free to propose changes to this document in a p
 - [Code of conduct](#code-of-conduct)
 - [Reporting issues](#reporting-issues)
 - [Submitting pull requests](#submitting-pull-requests)
--
+- [Testing](#testing)
+- [Code style](#code-style)
+- [Scripts](#scripts)
 
 ## Code of conduct
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
@@ -20,13 +22,12 @@ If don't, just open a [new clear and descriptive issue](../../issues/new).
 
 ## Submitting pull requests
 Pull requests are the greatest contributions, so be sure they are focused in scope, and do avoid unrelated commits.
-And submit your pull request after making sure that all tests pass and they are covering 100% of the code.
 
 - Fork it!
 - Clone your fork: `git clone https://github.com/<your-username>/gridus`
 - Navigate to the newly cloned directory: `cd gridus`
 - Create a new branch for the new feature: `git checkout -b my-new-feature`
-- Install the tools necessary for development: `yarn` or `npm install`
+- Install the tools necessary for development: `npm install`
 - Commit your changes: `git commit -am 'Add some feature'`
 - Push to the branch: `git push origin my-new-feature`
 - Submit a pull request with full remarks documenting your changes.
@@ -36,7 +37,7 @@ All the test are placed under the `test` folder.
 Uses [tape](https://github.com/substack/tape) as test-runner.
 The tests parses the stylus files inside test/fixtures using [css-parse](https://github.com/reworkcss/css-parse) and then compares it with the expected css files placed under test/fixtures/expected.
 
-## Code Style
+## Code style
 See [stylus-code-style](https://github.com/thiamsantos/stylus-code-style).
 
 ## Scripts

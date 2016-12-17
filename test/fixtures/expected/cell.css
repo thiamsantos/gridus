@@ -1,0 +1,12 @@
+.cell-default {
+  flex: 1;
+}
+.cell-flex {
+  flex: 1;
+}
+.cell-fraction {
+  flex: 0 0 40%;
+}
+.cell-unit {
+  flex: 1 0 200px;
+}

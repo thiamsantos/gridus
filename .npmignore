@@ -1,3 +1,6 @@
+test/
 .editorconfig
 .stylintrc
-test/
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+gridus-logo.svg

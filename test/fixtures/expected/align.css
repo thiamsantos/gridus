@@ -1,0 +1,16 @@
+.align-default {
+  align-content: center;
+  align-items: center;
+}
+.align-start {
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.align-center {
+  align-content: center;
+  align-items: center;
+}
+.align-end {
+  align-content: flex-end;
+  align-items: flex-end;
+}
