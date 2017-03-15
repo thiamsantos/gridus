@@ -1,6 +1,8 @@
 <img src="https://cdn.rawgit.com/thiamsantos/gridus/master/gridus-logo.svg" height="200" align="right">
 
 # gridus
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/thiamsantos/gridus.svg)](https://greenkeeper.io/)
 [![Travis](https://img.shields.io/travis/thiamsantos/gridus.svg)](https://travis-ci.org/thiamsantos/gridus)
 [![npm (scoped)](https://img.shields.io/npm/v/gridus.svg)](https://www.npmjs.com/package/gridus)
 [![npm](https://img.shields.io/npm/l/gridus.svg)](LICENSE.md)
